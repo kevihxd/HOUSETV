@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono&display=swap');
+@import "tailwindcss";
+
+/* 
+  BULLETPROOF SMART TV STYLESHEET
+  Designed for Samsung Tizen, LG WebOS, Android TV, and Web browsers.
+  Does NOT rely on @layer or oklch() so older TV browser engines (Chromium 69-94)
+  render all controls, buttons, and layouts with 100% visual fidelity.
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body,
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Force YouTube Iframe to stay locked at 100% viewport on Smart TVs */
+#youtube-playlist-player-iframe,
+iframe[id^="youtube-playlist-player-iframe"],
+iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  border: none !important;
+  outline: none !important;
+  display: block !important;
+  z-index: 10;
+}
+
+/* TV Controls Top Bar */
+.tv-top-bar {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 40;
+  pointer-events: auto;
+}
+
+/* Info Pill */
+.tv-info-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(10, 15, 30, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  padding: 10px 18px;
+  color: #f1f5f9;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  max-width: 55vw;
+}
+
+.tv-title-text {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #e2e8f0;
+}
+
+.tv-short-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(245, 158, 11, 0.25);
+  color: #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 9999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* TV Actions Container */
+.tv-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* TV Button Base */
+.tv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.tv-btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+  border: 1px solid rgba(96, 165, 250, 0.4);
+}
+
+.tv-btn-primary:hover,
+.tv-btn-primary:focus {
+  background: #1d4ed8;
+  transform: scale(1.04);
+}
+
+.tv-btn-secondary {
+  background: rgba(15, 23, 42, 0.88);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.tv-btn-secondary:hover,
+.tv-btn-secondary:focus {
+  background: rgba(30, 41, 59, 0.95);
+  transform: scale(1.04);
+}
+
+/* Prominent TV Sound Activation Banner */
+.tv-sound-banner {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 2px solid #3b82f6;
+  border-radius: 9999px;
+  padding: 14px 28px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(59, 130, 246, 0.3);
+  z-index: 50;
+  cursor: pointer;
+  animation: tvPulse 2s infinite ease-in-out;
+}
+
+@keyframes tvPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.03);
+  }
+}
+
+.tv-sound-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+.tv-sound-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: #93c5fd;
+}
+
+/* Floating Toast notification (non-blocking for TV) */
+.tv-toast {
+  position: absolute;
+  top: 76px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(234, 179, 8, 0.4);
+  border-radius: 12px;
+  padding: 10px 16px;
+  color: #fef08a;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 50;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
