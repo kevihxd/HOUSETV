@@ -1,6 +1,0 @@
-{
-  "name": "Reproductor de TV y Listas en Bucle",
-  "description": "Organizador y reproductor continuo de videos de YouTube optimizado para televisores, con reproducción automática y modo sin distracciones.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
